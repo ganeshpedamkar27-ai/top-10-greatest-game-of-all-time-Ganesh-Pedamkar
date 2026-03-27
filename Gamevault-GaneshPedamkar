@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GameVault | Top 10 Greatest Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #4a148c; /* Deep Purple for Gaming */
+      --green-light: #f3e5f5;
+      --orange: #ff3d00; /* Neon Orange/Red */
+      --orange-light: #fff3e0;
+      --dark: #1a1a1a;
+      --gray: #6b7280;
+      --bg: #f9fafb;
+      --white: #ffffff;
+      --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.5;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      background: var(--green);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+    .nav-logo span { color: #00e5ff; } 
+    .nav-toggle {
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2px; background: white; border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #311b92;
+      padding: 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      color: white; text-decoration: none;
+      padding: 14px 24px;
+      font-size: 1rem; font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.2s;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.1); }
+    .dark-toggle {
+      background: none; border: none;
+      color: white; font-size: 1.3rem;
+      cursor: pointer; padding: 4px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, #1a0633 100%);
+      color: white;
+      text-align: center;
+      padding: 48px 24px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      max-width: 320px;
+      margin: 0 auto 28px;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255, 61, 0, 0.4); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    /* ── OFFERS STRIP ── */
+    .offers-strip {
+      background: var(--orange);
+      color: white;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 32px 20px; max-width: 800px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .section-sub {
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+
+    /* ── GENRES ── */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .cat-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px 10px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      text-decoration: none;
+      display: block;
+    }
+    .cat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); border-color: var(--green); }
+    .cat-icon { font-size: 2rem; margin-bottom: 8px; }
+    .cat-name { font-size: 0.78rem; font-weight: 600; color: var(--dark); }
+
+    /* ── TOP 10 LIST ── */
+    .deals-section { background: var(--green-light); border-radius: 20px; margin-bottom: 20px; }
+    .deals-list { display: flex; flex-direction: column; gap: 12px; }
+    
+    /* Search Trigger Wrapper */
+    .game-link { text-decoration: none; color: inherit; display: block; }
+    
+    .deal-card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: var(--card-shadow);
+      transition: all 0.2s;
+    }
+    .game-link:hover .deal-card { transform: translateX(8px); border-left: 4px solid var(--orange); }
+    
+    .deal-emoji { font-size: 2.2rem; min-width: 48px; text-align: center; }
+    .deal-info { flex: 1; }
+    .deal-name { font-weight: 700; font-size: 1rem; margin-bottom: 2px; color: var(--dark); }
+    .deal-desc { font-size: 0.78rem; color: var(--gray); }
+    .deal-price { text-align: right; min-width: 80px; }
+    .deal-new { font-weight: 700; color: var(--green); font-size: 1.2rem; }
+    .deal-old { font-size: 0.75rem; color: var(--gray); }
+    .deal-badge {
+      background: var(--orange);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 3px;
+    }
+
+    /* ── GAMING ERAS ── */
+    .plans-list { display: flex; flex-direction: column; gap: 12px; }
+    .plan-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--card-shadow);
+      border-left: 4px solid var(--green);
+      position: relative;
+    }
+    .plan-card.featured { border-left-color: var(--orange); background: var(--orange-light); }
+    .plan-card.premium { border-left-color: #00e5ff; background: #e0f7fa; }
+    .plan-name { font-weight: 700; font-size: 1rem; margin-bottom: 4px; }
+    .plan-price { font-size: 1.3rem; font-weight: 700; color: var(--green); }
+    .plan-perks { font-size: 0.78rem; color: var(--gray); margin-top: 6px; line-height: 1.6; }
+
+    /* ── DARK MODE ── */
+    body.dark { background: #111; color: #e5e7eb; }
+    body.dark nav { background: #1a0633; }
+    body.dark .section-title { color: #e5e7eb; }
+    body.dark .cat-card, body.dark .deal-card, body.dark .plan-card { background: #1e1e1e; color: #e5e7eb; }
+    body.dark .deal-name { color: #fff; }
+    body.dark .deals-section { background: #0d021a; }
+
+    footer { background: #111; color: #9ca3af; text-align: center; padding: 40px 20px; font-size: 0.8rem; }
+  </style>
+</head>
+<body id="top">
+
+  <nav>
+    <div class="nav-top">
+      <div class="nav-logo">Game<span>Vault</span></div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">🌙</button>
+        <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#top">🏠 Hall of Fame</a>
+      <a href="#rankings">🏆 Rankings</a>
+      <a href="#eras">🏷️ History</a>
+      <a href="#contact">📞 Contact</a>
+    </div>
+  </nav>
+
+  <div class="offers-strip">
+    🏆 Voted by 10 million+ fans <span>|</span> The definitive <strong>2026 Rankings</strong>
+  </div>
+
+  <div class="hero">
+    <div class="hero-badge">👾 Essential Gaming History</div>
+    <h1>The Greatest<br/>Games Ever Made.</h1>
+    <p>Journey through the masterpieces that defined generations and shaped the industry.</p>
+    <div class="hero-btns">
+      <a href="https://www.google.com/search?q=The+Legend+of+Zelda+Ocarina+of+Time" target="_blank" class="btn-primary">See #1 Game</a>
+      <button class="btn-secondary">Explore Genres</button>
+    </div>
+  </div>
+
+  <section id="rankings">
+    <div class="deals-section" style="padding:24px 20px;">
+      <div class="section-title">🔥 The Top 10 Hall of Fame</div>
+      <div class="section-sub">Click any game to see why it made history</div>
+      <div class="deals-list">
+        
+        <a href="https://www.google.com/search?q=The+Legend+of+Zelda+Ocarina+of+Time" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🛡️</div>
+            <div class="deal-info">
+              <div class="deal-name">The Legend of Zelda: Ocarina of Time</div>
+              <div class="deal-desc">Nintendo 64 - The foundation of 3D adventure.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#1</div>
+              <div class="deal-badge">GOAT</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Minecraft+game+history" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">⛏️</div>
+            <div class="deal-info">
+              <div class="deal-name">Minecraft</div>
+              <div class="deal-desc">The ultimate sandbox of infinite possibilities.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#2</div>
+              <div class="deal-badge">Bestseller</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=The+Witcher+3+Wild+Hunt" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🐎</div>
+            <div class="deal-info">
+              <div class="deal-name">The Witcher 3: Wild Hunt</div>
+              <div class="deal-desc">The gold standard for open-world RPG storytelling.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#3</div>
+              <div class="deal-badge">RPG King</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Tetris+history" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🕹️</div>
+            <div class="deal-info">
+              <div class="deal-name">Tetris</div>
+              <div class="deal-desc">Pure, addictive, and mathematically perfect.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#4</div>
+              <div class="deal-badge">Classic</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Grand+Theft+Auto+V" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🚗</div>
+            <div class="deal-info">
+              <div class="deal-name">Grand Theft Auto V</div>
+              <div class="deal-desc">A technical marvel of satirical open-world design.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#5</div>
+              <div class="deal-badge">Giant</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Super+Mario+64" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🍄</div>
+            <div class="deal-info">
+              <div class="deal-name">Super Mario 64</div>
+              <div class="deal-desc">The game that taught the world how to move in 3D.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#6</div>
+              <div class="deal-badge">Pioneer</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Elden+Ring" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">💍</div>
+            <div class="deal-info">
+              <div class="deal-name">Elden Ring</div>
+              <div class="deal-desc">A masterpiece of exploration and challenging combat.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#7</div>
+              <div class="deal-badge">Modern</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Half-Life+2" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🧪</div>
+            <div class="deal-info">
+              <div class="deal-name">Half-Life 2</div>
+              <div class="deal-desc">Revolutionized physics and narrative in shooters.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#8</div>
+              <div class="deal-badge">Elite</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=The+Last+of+Us+Part+1" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">🌿</div>
+            <div class="deal-info">
+              <div class="deal-name">The Last of Us</div>
+              <div class="deal-desc">Unmatched emotional depth in gaming history.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#9</div>
+              <div class="deal-badge">Drama</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/search?q=Doom+1993" target="_blank" class="game-link">
+          <div class="deal-card">
+            <div class="deal-emoji">👹</div>
+            <div class="deal-info">
+              <div class="deal-name">DOOM (1993)</div>
+              <div class="deal-desc">The father of the first-person shooter genre.</div>
+            </div>
+            <div class="deal-price">
+              <div class="deal-new">#10</div>
+              <div class="deal-badge">Legend</div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="eras">
+    <div class="section-title">Gaming Eras</div>
+    <div class="section-sub">Where the legends were born</div>
+    <div class="plans-list">
+      <div class="plan-card">
+        <div class="plan-name">The Retro Age (80s - 90s)</div>
+        <div class="plan-price">Foundations</div>
+        <div class="plan-perks">✅ The birth of Mario & Sonic<br/>✅ Arcade culture peaks<br/>✅ 8-bit and 16-bit revolution</div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">The 3D Revolution (Late 90s - 00s)</div>
+        <div class="plan-price">Innovation</div>
+        <div class="plan-perks">✅ PS1, PS2, and N64 era<br/>✅ Cinematic storytelling begins<br/>✅ Halo, GTA, and MGS debut</div>
+      </div>
+      <div class="plan-card premium">
+        <div class="plan-name">Modern Masterpieces (2010 - Now)</div>
+        <div class="plan-price">Immersion</div>
+        <div class="plan-perks">✅ Photorealistic graphics<br/>✅ Massive living open worlds<br/>✅ Elden Ring & Last of Us era</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0;">
+    <div class="contact-section" style="padding:24px 20px; background: var(--dark); border-radius: 20px; color: white;">
+      <div class="section-title" style="color:white;">Submit a Rating</div>
+      <div class="section-sub">Help us shape the 2027 list</div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px;">
+          <strong>Email:</strong> votes@gamevault.net
+        </div>
+        <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px;">
+          <strong>Update:</strong> Every Sunday at Midnight
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 <strong>GameVault-Ganesh Pedamkar</strong> Archives. All rights reserved.
+  </footer>
+
+  <script>
+    // Toggle Nav for Mobile
+    function toggleNav() {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('open');
+    }
+    
+    // WordPress Compatibility: Ensure clicking nav links closes the menu
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
